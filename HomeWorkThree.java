@@ -87,7 +87,7 @@ public class HomeWorkThree {
                 "235-35-85", 1200, 51);
 
         for (int i = 0; i < empoloyees.length; i++) {
-            if (empoloyees[i].age > 40) {
+            if (empoloyees[i].getAge() > 40) {
                 empoloyees[i].printInfo();
             }
         }
