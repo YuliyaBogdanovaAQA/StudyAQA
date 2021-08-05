@@ -1,7 +1,5 @@
 package school.lesson3;
 
-import javax.naming.Name;
-
 public class HomeWorkThree {
 
     public static class Empoloyee {
@@ -71,7 +69,7 @@ public class HomeWorkThree {
 
         public void printInfo() {
             System.out.println(String.format("Full name: %s \nPosition: %s \nEmail: %s \nPhone: %s \nSalary: %d \nAge: %d \n",
-                    name, position, email, phone, salary, age));
+                    getName(), getPosition(), getEmail(), getPhone(), getSalary(), getAge()));
         }
     }
 
@@ -89,7 +87,7 @@ public class HomeWorkThree {
                 "235-35-85", 1200, 51);
 
         for (int i = 0; i < empoloyees.length; i++) {
-            if (empoloyees[i].age > 40) {
+            if (empoloyees[i].getAge() > 40) {
                 empoloyees[i].printInfo();
             }
         }
