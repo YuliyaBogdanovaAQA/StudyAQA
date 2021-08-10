@@ -1,8 +1,5 @@
 package school.lesson4;
 
-import java.util.ArrayList;
-import java.util.List;
-
 class Payment {
     public Expenses expenses;
     private int currentMoney = 0;
@@ -17,7 +14,7 @@ class Payment {
 
     public class Expenses {
         String nameExpenses;
-        private int prise;
+        int prise;
 
         public Expenses(String nameExpenses, int prise) {
             this.nameExpenses = nameExpenses;
@@ -47,14 +44,4 @@ class Payment {
 }
 
 public class TaskSix {
-    public static void main(String[] args) {
-        List<Payment.Expenses> purchases = new ArrayList<Payment.Expenses>();
-        purchases.add(new Payment(300).new Expenses("Phone", 120));
-        purchases.add(new Payment(300).new Expenses("Champoo", 15));
-
-        for (Payment.Expenses list : purchases) {
-            list.print();
-            System.out.println();
-        }
-    }
 }
