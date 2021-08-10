@@ -11,7 +11,7 @@ abstract class Animal {
     public String getName() {
         return name;
     }
-
+// TaskTwo
     public void runTaskTwo(int runCurrentDistance) {
         System.out.println("Tne " + name + " ran " + runCurrentDistance);
     }
