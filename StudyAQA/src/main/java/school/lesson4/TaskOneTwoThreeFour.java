@@ -1,7 +1,7 @@
 package school.lesson4;
 
 abstract class Animal {
-    String name;
+    private String name;
 
     public Animal(String name) {
         this.name = name;
@@ -11,23 +11,18 @@ abstract class Animal {
     public String getName() {
         return name;
     }
-//Task 2
- /*
-    public void run(int runCurrentDistance) {
 
+    public void runTaskTwo(int runCurrentDistance) {
         System.out.println("Tne " + name + " ran " + runCurrentDistance);
     }
 
-    public void swim(int swimCurrentDistance) {
+    public void swimTaskTwo(int swimCurrentDistance) {
         System.out.println("Tne " + name + " swam " + swimCurrentDistance);
     }
-*/
-
-//end task2
 
     // Task3
-    int runMaxDistance;
-    int swimMaxDistance;
+    protected int runMaxDistance;
+    protected int swimMaxDistance;
 
     public int getRunMaxDistance() {
         return runMaxDistance;
@@ -64,8 +59,6 @@ abstract class Animal {
 
     protected abstract int swimMaxDistance();
 
-//end task 3
-
     //task 4
     private static int quantity = 0;
 
@@ -80,7 +73,7 @@ class Cat extends Animal {
         Cat.quantity();
     }
 
-    //for task 3
+    // task 3
     @Override
     protected int runMaxDistance() {
         return runMaxDistance = 200;
@@ -96,7 +89,6 @@ class Cat extends Animal {
         System.out.println("Tne " + getName() + " is cat. Cats can't swim.");
     }
 
-    //end for task3
     //Task 4
     private static int quantity = 0;
 
@@ -109,10 +101,9 @@ class Dog extends Animal {
     public Dog(String name) {
         super(name);
         Dog.quantity();
-
     }
 
-    //for task3
+    //task3
     @Override
     protected int runMaxDistance() {
         return runMaxDistance = 500;
@@ -122,7 +113,6 @@ class Dog extends Animal {
     protected int swimMaxDistance() {
         return swimMaxDistance = 10;
     }
-// end for task3
 
     //Task 4
     private static int quantity = 0;
@@ -133,7 +123,6 @@ class Dog extends Animal {
 }
 
 public class TaskOneTwoThreeFour {
-
     public static void main(String[] args) {
         Cat cat1 = new Cat("Pushok");
         Dog dog = new Dog("Tuzik");
@@ -141,9 +130,16 @@ public class TaskOneTwoThreeFour {
         Cat cat3 = new Cat("Asya");
         Dog dog2 = new Dog("Sharik");
 
+        cat1.runTaskTwo(150);
+        dog2.swimTaskTwo(200);
+
         cat1.run(350);
         cat2.swim(200);
         dog.run(500);
         dog.swim(11);
+
+        System.out.println("The numbers of cat: " + Cat.quantity());
+        System.out.println("The numbers of dogs: " + Dog.quantity());
+        System.out.println("The noumbers of animals: " + Animal.quantity());
     }
 }
