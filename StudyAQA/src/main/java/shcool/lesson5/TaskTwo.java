@@ -47,6 +47,12 @@ class Box<T extends Fruit> {
         this.fruitInBox.addAll(List.of(fruit));
     }
 
+    public void addFruits (T fruit, int size){                    // Edits based on comments
+        for (int i=0; i<size; i++){
+            this.fruitInBox.add(fruit);
+        }
+    }
+
     public float getWeight() {
         float currentWeight = 0;
         for (T s : fruitInBox)
@@ -80,6 +86,7 @@ public class TaskTwo {
         Box<Orange> boxO = new Box<Orange>();
 
         boxApple.addFruit(apple1, apple2, apple3);
+        boxApple.addFruits(apple1,10);                      // new
         boxOrange.addFruit(orange1);
         boxA.addFruit(apple3);
         boxO.addFruit(orange2);
