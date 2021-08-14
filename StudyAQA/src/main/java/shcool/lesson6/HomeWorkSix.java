@@ -13,17 +13,9 @@ class MyArrayDataException extends Exception {
 }
 
 public class HomeWorkSix {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MyArraySizeException, MyArrayDataException {
         String[][] myArray = new String[4][7];
         String[][] myArray2 = new String[4][4];
-
-      /*  try {
-            TaskTwo(myArray,4,7);
-        } catch (MyArraySizeException e) {
-            e.printStackTrace();
-        } catch (MyArrayDataException e) {
-            e.printStackTrace();
-        }*/
 
         String[][] forCheck = {{"1", "1", "1", "1"},
                 {"1", "1", "kdngkj", "1"},
@@ -31,13 +23,7 @@ public class HomeWorkSix {
                 {"1", "1", "1", "jhv"}
                 };
 
-        try {
-            TaskTwo(forCheck, 4, 3);
-        } catch (MyArraySizeException e) {
-            e.printStackTrace();
-        } catch (MyArrayDataException e) {
-            e.printStackTrace();
-        }
+            TaskTwo(forCheck, 4, 4);
     }
 
     public static void TaskTwo(String[][] array, int sizeOfRow, int sizeOfColumn) throws MyArraySizeException, MyArrayDataException {
