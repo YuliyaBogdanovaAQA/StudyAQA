@@ -43,7 +43,7 @@ public class HomeWorkSix {
                     sumElements += Integer.parseInt(array[i][j]);
                 } catch (NumberFormatException e) {
                     Throwable x = new MyArrayDataException("Incorrect data in point with index: " +
-                            i +"/" + j + " " + e.getMessage());
+                            i + "/" + j + " " + e.getMessage());
                     x.printStackTrace();
                 }
             }
