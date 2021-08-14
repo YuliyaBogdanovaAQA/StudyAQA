@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< Updated upstream
+    <list default="true" id="ecf1bccc-4c19-4b7d-8ba8-4b2c92068888" name="Default Changelist" comment="" />
     <list default="true" id="ecf1bccc-4c19-4b7d-8ba8-4b2c92068888" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/lesson6/HomeWorkSix.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
-=======
-    <list default="true" id="ecf1bccc-4c19-4b7d-8ba8-4b2c92068888" name="Default Changelist" comment="" />
->>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,7 +36,20 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../StudyAQACopi" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.HomeWorkSix (1)">
+    <configuration name="HomeWorkSix (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="shcool.lesson6.HomeWorkSix" />
+      <module name="StudyAQA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="shcool.lesson6.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="HomeWorkSix" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="shcool.lesson1.lesson6.HomeWorkSix" />
       <module name="StudyAQA" />
@@ -55,6 +65,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.HomeWorkSix (1)" />
         <item itemvalue="Application.HomeWorkSix" />
       </list>
     </recent_temporary>
@@ -63,10 +74,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="ecf1bccc-4c19-4b7d-8ba8-4b2c92068888" name="Default Changelist" comment="" />
-      <created>1628819901557</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1628819901557</updated>
+      @ -22,4 +66,15 @@
     </task>
     <servers />
   </component>

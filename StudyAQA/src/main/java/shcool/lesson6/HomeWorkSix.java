@@ -19,7 +19,7 @@ public class HomeWorkSix {
 
         String[][] forCheck = {{"1", "1", "1", "1"},
                 {"1", "1", "kdngkj", "1"},
-                {"1", "1", "1", "1"},
+                {"1", "jgyu", "1", "1"},
                 {"1", "1", "1", "jhv"}};
 
         try {
@@ -42,7 +42,9 @@ public class HomeWorkSix {
                 try {
                     sumElements += Integer.parseInt(array[i][j]);
                 } catch (NumberFormatException e) {
-                    throw new MyArrayDataException("Mistake in point: " + i + "/" + j);
+                    Throwable x = new MyArrayDataException("Incorrect data in point with index: " +
+                            i +"/" + j + " " + e.getMessage());
+                    x.printStackTrace();
                 }
             }
         }
