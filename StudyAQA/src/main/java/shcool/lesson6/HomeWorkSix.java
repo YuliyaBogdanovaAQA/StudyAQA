@@ -1,8 +1,8 @@
 package shcool.lesson6;
 
 class MyArraySizeException extends Exception {
-    public MyArraySizeException(String message) {
-        super(message);
+    public MyArraySizeException(int i, int j) {
+        super("The size of array not 4x4. Size of the checked array is " + i + "x" + j);
     }
 }
 
@@ -13,34 +13,55 @@ class MyArrayDataException extends Exception {
 }
 
 public class HomeWorkSix {
-    public static void main(String[] args) throws MyArraySizeException, MyArrayDataException {
-        String[][] myArray = new String[4][7];
-        String[][] myArray2 = new String[4][4];
+    public static void main(String[] args) {
+        String[][] myArray = new String[6][4];
+        try {
+            try {
+                TaskTwo(myArray);
+            } catch (MyArraySizeException e) {
+                e.printStackTrace();
+            }
+        } catch (MyArrayDataException e) {
+            e.printStackTrace();
+        }
+
+        String[][] myArray2 = new String[4][5];
+        try {
+            try {
+                TaskTwo(myArray2);
+            } catch (MyArraySizeException e) {
+                e.printStackTrace();
+            }
+        } catch (MyArrayDataException e) {
+            e.printStackTrace();
+        }
 
         String[][] forCheck = {{"1", "1", "1", "1"},
                 {"1", "1", "kdngkj", "1"},
-                {"jgjb", "1", "1", "1"},
-                {"1", "1", "1", "jhv"}
-                };
+                {"1", "jgyu", "1", "1"},
+                {"1", "1", "1", "jhv"}};
 
-            TaskTwo(forCheck, 4, 4);
+        try {
+            try {
+                TaskTwo(forCheck);
+            } catch (MyArraySizeException e) {
+                e.printStackTrace();
+            }
+        } catch (MyArrayDataException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void TaskTwo(String[][] array, int sizeOfRow, int sizeOfColumn) throws MyArraySizeException, MyArrayDataException {
+    static void TaskTwo(String[][] array) throws MyArraySizeException, MyArrayDataException {
         int sumElements = 0;
-        if (array.length != sizeOfRow) {
-            throw new MyArraySizeException("The number of rows not: " +sizeOfRow);
-        }
         for (int i = 0; i < array.length; i++) {
-            if (array[i].length != sizeOfColumn) {
-                throw new MyArraySizeException("The number of columns not: "+ sizeOfColumn);
-            }
+            if (4 != array.length | 4 != array[i].length) throw new MyArraySizeException(array.length, array[i].length);
             for (int j = 0; j < array[i].length; j++) {
                 try {
                     sumElements += Integer.parseInt(array[i][j]);
                 } catch (NumberFormatException e) {
                     Throwable x = new MyArrayDataException("Incorrect data in point with index: " +
-                            i +"/" + j + " " + e.getMessage());
+                            i + "/" + j + " " + e.getMessage());
                     x.printStackTrace();
                 }
             }
