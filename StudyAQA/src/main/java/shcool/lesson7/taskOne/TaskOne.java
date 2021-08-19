@@ -16,7 +16,7 @@ public class TaskOne {
                 stBuf.append(FILE_SEPARATOR);
                 stBuf.append(pet.getName());
                 stBuf.append(FILE_SEPARATOR);
-                stBuf.append(pet.getAge() ==0 ? "not defined": pet.getAge());
+                stBuf.append(pet.getAge() == 0 ? "not defined" : pet.getAge());
                 stBuf.append(FILE_SEPARATOR);
                 stBuf.append(pet.getAddress());
                 stBuf.append(FILE_SEPARATOR);
@@ -44,7 +44,7 @@ public class TaskOne {
         petsList.add(new Pets("dog", "Sharik", 5, "Smolenskaya str.,4/6, 25", new String[]{"25/06/2020", "15/08/2021"}));
         petsList.add(new Pets("cat", "Pushok", 3, "Smolenskaya str.,4/2, 37", new String[]{"17/06/2020", "21/08/2021"}));
         petsList.add(new Pets("hamster", "Orange", "Smolenskaya str.,1/6, 47", new String[]{"25/09/2020", "15/08/2021"}));
-        petsList.add(new Pets("parrot", "Shustrik", 0, "Smolenskaya str.,4/6, 25", new String[]{"25/06/2020", "15/08/2021","27/08/2021"}));
+        petsList.add(new Pets("parrot", "Shustrik", 0, "Smolenskaya str.,4/6, 25", new String[]{"25/06/2020", "15/08/2021", "27/08/2021"}));
         writeToCSV(petsList);
     }
 }

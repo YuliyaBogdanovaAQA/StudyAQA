@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ecf1bccc-4c19-4b7d-8ba8-4b2c92068888" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/shcool/lesson7/taskOne/Pets.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/shcool/lesson7/taskOne/TaskOne.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/shcool/lesson7/taskTwo/AppData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/shcool/lesson7/taskTwo/MyArrayDataException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/shcool/lesson7/taskTwo/TaskTwo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shcool/lesson7/taskOne/TaskOne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shcool/lesson7/taskOne/TaskOne.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shcool/lesson7/taskTwo/TaskTwo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shcool/lesson7/taskTwo/TaskTwo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskTwo.csv" beforeDir="false" afterPath="$PROJECT_DIR$/taskTwo.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +46,9 @@
       <recent name="shcool.lesson7.taskTwo" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="shcool.lesson7.taskTwo" />
+    </key>
+    <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="shcool.lesson7.taskTwo" />
     </key>
   </component>
@@ -108,21 +108,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/shcool/lesson7/taskTwo/TaskTwo.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/shcool/lesson7/taskTwo/TaskTwo.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
