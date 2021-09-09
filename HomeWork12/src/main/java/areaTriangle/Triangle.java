@@ -1,9 +1,9 @@
 package areaTriangle;
 
 public class Triangle {
-    protected int a;
-    protected int b;
-    protected int c;
+    private int a;
+    private int b;
+    private int c;
 
     public Triangle(int a, int b, int c) {
         this.a = a;
