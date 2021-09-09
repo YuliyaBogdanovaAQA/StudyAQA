@@ -27,9 +27,9 @@ public class Triangle {
 
     public boolean checkTriangle() {
         boolean isTriangle = true;
-        if (( a + b) <= (long) c ||
-                ( b + c) <= (long) a ||
-                ( c + a) <= (long) b ||
+        if ((a + b) <= c ||
+                (b + c) <= a ||
+                (c + a) <= b ||
                 a <= 0 || b <= 0 || c <= 0) {
             isTriangle = false;
         }

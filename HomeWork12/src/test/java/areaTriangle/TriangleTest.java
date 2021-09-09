@@ -22,6 +22,7 @@ class TriangleTest {
         assertEquals(decimalFormat.format((Math.sqrt(3) / 4) * 9),
                 decimalFormat.format(triangle.area()));
     }
+
     @Test
     void areaMax() throws MyTriangleException {
         setUp(2147483647, 2147483647, 2147483647);
