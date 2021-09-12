@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class BasePage {
@@ -33,12 +35,6 @@ public class BasePage {
         }
     }
 
-    public void checkOpenPage(String locatorXPath, String title) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorXPath)));
-        Assert.assertEquals(driver.getTitle(), title);
-    }
-
     public void enterData(String locatorXPath, String data) {
         WebElement element = webElement(locatorXPath);
         try {
@@ -48,6 +44,8 @@ public class BasePage {
             ex.getMessage();
         } finally {
             System.out.println(element.getAttribute("value"));
+
+
             Assert.assertEquals(data, webElement(locatorXPath).getAttribute("value"));                     //!!!ADD 08.09
         }
     }
@@ -56,7 +54,7 @@ public class BasePage {
         StringBuilder sb = new StringBuilder();
         data = sb.append(data + " " + (int) (Math.random() * 100)).toString();
         enterData(locatorXPath, data);
-        Assert.assertNotEquals(null, webElement(locatorXPath).getAttribute("value"));
+        Assert.assertNotEquals(null, webElement(locatorXPath).getAttribute("value"));   ////!!!!!!!
     }
 
     public void choiceFromDropdownMenu(String locatorXPathSee, String locatorXPathChoice) {
@@ -66,11 +64,27 @@ public class BasePage {
         webElement(locatorXPathChoice).click();
     }
 
-    public void controlPage(String locator, String title, String exspectedMessage) {
+    public void waitElementVisibility(String locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
-        Assert.assertEquals(driver.getTitle(), title);
+    }
 
+    public void controlPage(String locator, String title, String exspectedMessage) {
+        waitElementVisibility(locator);
+        Assert.assertEquals(driver.getTitle(), title);
         Assert.assertEquals(exspectedMessage, driver.findElement(By.cssSelector(".message")).getText());
+    }
+
+    public void checkOpenPage(String locatorXPath, String title) {
+        waitElementVisibility(locatorXPath);
+        Assert.assertEquals(driver.getTitle(), title);
+    }
+
+    public List<WebElement> listWebElement(String[] xPathLocatorList) {
+        List<WebElement> listWebElement = new ArrayList<>();
+        for (int i=0; i<xPathLocatorList.length; i++){
+            listWebElement.add(webElement(xPathLocatorList[i]));
+        }
+        return listWebElement;
     }
 }

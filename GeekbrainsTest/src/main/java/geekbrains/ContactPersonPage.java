@@ -9,7 +9,6 @@ public class ContactPersonPage {
 
     protected WebDriver driver;
     private BasePage basePage;
-    private CreateContactPersonPage createContactPersonPage;
 
     public ContactPersonPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -22,10 +21,6 @@ public class ContactPersonPage {
 
     public void goToCreateContactPerson() {
         basePage = new BasePage(driver);
-        createContactPersonPage = new CreateContactPersonPage(driver);
-
         basePage.clickButton(button_createContactPerson);                               //Go to Create to Contact person
-        basePage.checkOpenPage(createContactPersonPage.xPath_Page_CreateContactPerson(),
-                "Создать контактное лицо - Контактные лица - Контрагенты");                   // check of Go to Create to Contact person
     }
 }

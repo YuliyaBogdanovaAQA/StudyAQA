@@ -1,6 +1,7 @@
 package geekbrains;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -42,19 +43,48 @@ public class TestGeekbrains {
 
     @Test
     public void testCaseOne() {
-        loginPage.loginPage();
-        startPage.checkAuthorization();
-        startPage.goToProject();
+        loginPage.checkOpenLoginPage();
+        loginPage.fillDataLoginPage();
+        Assert.assertEquals(loginPage.USER_NAME(), loginPage.input_UserName().getAttribute("value"));
+        Assert.assertEquals(loginPage.USER_PASS(), loginPage.input_UserPass().getAttribute("value"));
+        loginPage.acceptData();
+        startPage.checkOpenStartPage();
+        Assert.assertTrue(startPage.xPath_checkAuthorization().getText()
+                .contains(loginPage.USER_NAME()));
+        startPage.goToProject();                                      //см.README
         projectPage.goToCreateProject();
+        createProjectPage.checkOpenCreateProject();
         createProjectPage.fillRequiredLines();
+        //checking the filling from the keyboard
+        Assert.assertNotNull(createProjectPage.input_EnterNameProject().getAttribute("value"));
+        //checking the filling from the DropDownMenu
+        for (int i = 0; i < createProjectPage.listFillDropDownMenu().size(); i++) {
+            Assert.assertNotNull(createProjectPage.listFillDropDownMenu().get(i));
+        }
+        createProjectPage.saveNewProject();
+        createProjectPage.checkSaveNewProject();
     }
 
     @Test
     public void testCaseTwo() {
-        loginPage.loginPage();
-        startPage.checkAuthorization();
+        loginPage.checkOpenLoginPage();
+        loginPage.fillDataLoginPage();
+        Assert.assertEquals(loginPage.USER_NAME(), loginPage.input_UserName().getAttribute("value"));
+        Assert.assertEquals(loginPage.USER_PASS(), loginPage.input_UserPass().getAttribute("value"));
+        loginPage.acceptData();
+        startPage.checkOpenStartPage();
+        Assert.assertTrue(startPage.xPath_checkAuthorization().getText().contains(loginPage.USER_NAME()));
         startPage.goToContactPerson();
-        contactPersonPage.goToCreateContactPerson();
+        contactPersonPage.goToCreateContactPerson();                 //см. README
+        createContactPersonPage.checkOpenCreateContactPersonPage();
         createContactPersonPage.fillRequiredLines();
+        //checking the filling from the keyboard
+        for (int i = 0; i < createContactPersonPage.listFillInputData().size(); i++) {
+            Assert.assertNotNull(createContactPersonPage.listFillInputData().get(i).getAttribute("value"));
+        }
+        //checking the filling from the DropDownMenu
+        Assert.assertNotNull(createContactPersonPage.xPathOverDropDown_company());
+        createContactPersonPage.saveNewProject();
+        createContactPersonPage.checkSaveNewProject();
     }
 }

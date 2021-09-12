@@ -2,7 +2,11 @@ package geekbrains;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CreateContactPersonPage {
     private String xPath_Page_CreateContactPerson = "//div[@class=\"responsive-cell responsive-cell-no-blocks\"][1]//div[@class=\"control-group control-group-text\"][1]//label";
@@ -27,8 +31,20 @@ public class CreateContactPersonPage {
         this.driver = driver;
     }
 
-    public String xPath_Page_CreateContactPerson(){
-        return xPath_Page_CreateContactPerson;
+    public void checkOpenCreateContactPersonPage() {
+        basePage = new BasePage(driver);
+        basePage.checkOpenPage(xPath_Page_CreateContactPerson,
+                "Создать контактное лицо - Контактные лица - Контрагенты");
+    }
+
+    public WebElement xPathOverDropDown_company() {
+        basePage = new BasePage(driver);
+        return basePage.webElement(xPathOverDropDown_company);
+    }
+
+    public List <WebElement> listFillInputData() {
+        basePage = new BasePage(driver);
+        return basePage.listWebElement(new String[]{xPath_lastName, xPath_firstName, xPath_jobPosition});
     }
 
     public void fillRequiredLines() {
@@ -40,10 +56,15 @@ public class CreateContactPersonPage {
         basePage.enterData2(jobPosition, xPath_jobPosition);
 
         basePage.choiceFromDropdownMenu(xPathOverDropDown_company, xPathChooseDropeDown_company);
-        Assert.assertNotNull(xPathOverDropDown_company);
+    }
 
+    public void saveNewProject() {
+        basePage = new BasePage(driver);
         basePage.clickButton(button_SaveClose);
+    }
 
+    public void checkSaveNewProject() {
+        basePage = new BasePage(driver);
         basePage.controlPage(contactPersonPage.getxPath_ContactPerson()
                 , "Все - Контактные лица - Контактные лица - Контрагенты"
                 , "Контактное лицо сохранено");

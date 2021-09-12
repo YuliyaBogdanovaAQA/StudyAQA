@@ -1,6 +1,7 @@
 package geekbrains;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
@@ -13,7 +14,6 @@ public class LoginPage {
 
     protected WebDriver driver;
     private BasePage basePage;
-    private StartPage startPage;
 
     public LoginPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -23,15 +23,33 @@ public class LoginPage {
     public String USER_NAME() {
         return USER_NAME;
     }
+    public String USER_PASS() {
+        return USER_PASS;
+    }
 
-    public void loginPage() {
+
+    public void checkOpenLoginPage (){
         basePage = new BasePage(driver);
-        startPage = new StartPage(driver);
-
         basePage.checkOpenPage(xPath_LoginPage, "Логин");
+    }
+
+    public WebElement input_UserName() {
+        basePage = new BasePage(driver);
+        return basePage.webElement(user);
+    }
+    public WebElement input_UserPass() {
+        basePage = new BasePage(driver);
+        return basePage.webElement(pass);
+    }
+
+    public void fillDataLoginPage() {
+        basePage = new BasePage(driver);
         basePage.enterData(user, USER_NAME);
         basePage.enterData(pass, USER_PASS);
+    }
+
+    public void acceptData(){
+        basePage = new BasePage(driver);
         basePage.clickButton(button_enter);
-        basePage.checkOpenPage(startPage.xPath_StartPage(), "Панель инструментов");                    // check of authorization
     }
 }
