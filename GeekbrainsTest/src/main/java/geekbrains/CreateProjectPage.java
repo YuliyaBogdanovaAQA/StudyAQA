@@ -1,11 +1,9 @@
 package geekbrains;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CreateProjectPage {
@@ -35,6 +33,7 @@ public class CreateProjectPage {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
+
     public void checkOpenCreateProject() {
         basePage = new BasePage(driver);
         basePage.checkOpenPage(button_SaveProject, "Создать проект - Все проекты - Проекты");
@@ -43,7 +42,7 @@ public class CreateProjectPage {
     public List<WebElement> listFillDropDownMenu() {
         basePage = new BasePage(driver);
         return basePage.listWebElement(new String[]{click_Company, click_businessUnit, click_curator
-        ,click_projectRP, click_administrator,click_manager, click_controlGroup});
+                , click_projectRP, click_administrator, click_manager, click_controlGroup});
     }
 
     public WebElement input_EnterNameProject() {
@@ -53,7 +52,9 @@ public class CreateProjectPage {
     public void fillRequiredLines() {
         basePage = new BasePage(driver);
         basePage.enterData2(INPUT_DATA, xPath_EnterNameProject);
-        basePage.choiceFromDropdownMenu(click_Company, choose_Company);
+        basePage.webElement(click_Company).click();
+        basePage.waitElementVisibility(choose_Company);
+        basePage.webElement(choose_Company).click();
         basePage.choiceFromDropdownMenu(click_businessUnit, choose_businessUnit);
         basePage.choiceFromDropdownMenu(click_curator, choose_curator);
         basePage.choiceFromDropdownMenu(click_projectRP, choose_projectRP);
@@ -67,6 +68,8 @@ public class CreateProjectPage {
     }
 
     public void checkSaveNewProject() {
+        basePage = new BasePage(driver);
+        projectPage = new ProjectPage(driver);
         basePage.controlPage(projectPage.xPathLocatorProjectPage()
                 , "Все - Проекты - Все проекты - Проекты"
                 , "Проект сохранен");

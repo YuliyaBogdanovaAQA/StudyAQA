@@ -61,6 +61,7 @@ public class BasePage {
         new Actions(driver)
                 .click(webElement(locatorXPathSee))
                 .perform();
+        waitElementVisibility(locatorXPathChoice);
         webElement(locatorXPathChoice).click();
     }
 
@@ -82,7 +83,7 @@ public class BasePage {
 
     public List<WebElement> listWebElement(String[] xPathLocatorList) {
         List<WebElement> listWebElement = new ArrayList<>();
-        for (int i=0; i<xPathLocatorList.length; i++){
+        for (int i = 0; i < xPathLocatorList.length; i++) {
             listWebElement.add(webElement(xPathLocatorList[i]));
         }
         return listWebElement;

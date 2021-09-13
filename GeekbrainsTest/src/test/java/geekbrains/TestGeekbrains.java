@@ -36,10 +36,10 @@ public class TestGeekbrains {
         driver.get("https://crm.geekbrains.space/user/login");
     }
 
-    @After
+   /* @After
     public void close() {
         driver.quit();
-    }
+    }*/
 
     @Test
     public void testCaseOne() {
@@ -51,7 +51,7 @@ public class TestGeekbrains {
         startPage.checkOpenStartPage();
         Assert.assertTrue(startPage.xPath_checkAuthorization().getText()
                 .contains(loginPage.USER_NAME()));
-        startPage.goToProject();                                      //см.README
+        startPage.goToProject();
         projectPage.goToCreateProject();
         createProjectPage.checkOpenCreateProject();
         createProjectPage.fillRequiredLines();
@@ -75,7 +75,7 @@ public class TestGeekbrains {
         startPage.checkOpenStartPage();
         Assert.assertTrue(startPage.xPath_checkAuthorization().getText().contains(loginPage.USER_NAME()));
         startPage.goToContactPerson();
-        contactPersonPage.goToCreateContactPerson();                 //см. README
+        contactPersonPage.goToCreateContactPerson();
         createContactPersonPage.checkOpenCreateContactPersonPage();
         createContactPersonPage.fillRequiredLines();
         //checking the filling from the keyboard
