@@ -1,0 +1,8 @@
+Некоторые Asserts являются частью метода и вытащить их без "тягания" довольно объемной части кода, не получается.
+Для того, чтобы не повторять один и тот же код несколько раз в разных частях программы, сейчас оставила их без изменений. К ним относятся: 
+1. goToSomewhere из класса StartPage (в тесте: startPage.goToProject() и projectPage.goToCreateProject() для testCaseOne(); 
+startPage.goToContactPerson() и contactPersonPage.goToCreateContactPerson() для testCaseTwo()).
+2. checkOpenPage из класса BasePage (в тесте: loginPage.checkOpenLoginPage (),  startPage.checkOpenStartPage(), 
+createContactPersonPage.checkOpenCreateContactPersonPage(), createProjectPage.checkOpenCreateProject();
+3. controlPage из класса BasePage, который производит проверку сообщения всплывающего окна и верно открытой страницы,
+после нажатия "Сохранить что-либо".
