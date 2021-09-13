@@ -1,7 +1,5 @@
 package steam;
 
-import org.junit.Assert;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -11,7 +9,7 @@ import java.util.List;
 public class NewsPage {
 
     private String xPath_PageTitle = "//head//title";
-    private String titleNews = "Подобранные для вас новости об играх — Новостной центр Steam";
+
     private String xPath_ForCheckPageNews = "//div[@class=\"eventcalendar_Rows_r3Dia\"]";
     private String xPath_keyForSearch = "//div[@class=\"eventcalendar_PastSection_3FpvG\"]//div[@class=\"eventcalendar_CalendarRow_398u2\"][1]//*[@class=\"eventcalendartile_TileTextAppName_71phF\"]";
     private String xPath_ElementChoose = "//div[@class=\"eventcalendar_PastSection_3FpvG\"]//div[@class=\"eventcalendar_CalendarRow_398u2\"][1]";
@@ -34,23 +32,38 @@ public class NewsPage {
         this.driver = driver;
     }
 
-    public void gotoNewsPage() {
-        startPage = new StartPage(driver);
-        startPage.clickButtonFromStore_nav(startPage.button_Store_nav_News_StartPage(), xPath_ForCheckPageNews
-                , titleNews, xPath_PageTitle);
+    public void checkOpenNewsPage() {
+        basePage = new BasePage(driver);
+        basePage.checkOpenPage(xPath_ForCheckPageNews
+                , "Подобранные для вас новости об играх — Новостной центр Steam");
     }
 
-    public void testOpenNews() {
+    public String headerForCheck() {
         basePage = new BasePage(driver);
+        return basePage.webElement(xPath_PageTitle).getText();
+    }
 
-        String keyForSearch = basePage.webElement(xPath_keyForSearch)
-                .getText();
+    public String keyForSearchNews() {
+        basePage = new BasePage(driver);
+        return basePage.webElement(xPath_keyForSearch).getText();
+    }
+
+    public String keyForCheckRightNews() {
+        basePage = new BasePage(driver);
+        return basePage.webElement(xPath_ForCheckRightChoose).getText();
+    }
+
+    public void OpenNews() {
+        basePage = new BasePage(driver);
         basePage.webElement(xPath_ElementChoose).click();
-        basePage.checkOpenPage(XPath_CheckPageChooseNews
-                , "Подобранные для вас новости об играх — Новостной центр Steam");
-        Assert.assertEquals(basePage.webElement(xPath_ForCheckRightChoose)
-                .getText(), keyForSearch);
+    }
 
+    public void checkOpenNews() {
+        basePage = new BasePage(driver);
+        basePage.checkOpenPage(XPath_CheckPageChooseNews, "Подобранные для вас новости об играх — Новостной центр Steam");
+    }
+
+    public void checkUP_DOWN() {
         List<WebElement> listElements = basePage.webElements
                 (xPath_checkList);
         if (listElements.size() > 1) {
@@ -64,10 +77,10 @@ public class NewsPage {
         } else {
             System.out.println("Was found only one element");
         }
+    }
 
-        //close
-        basePage.clickElement(button_Close); //close
-        basePage.checkOpenPage(xPath_ForCheckPageNews
-                , "Подобранные для вас новости об играх — Новостной центр Steam");
+    public void checkCLOSE() {
+        basePage = new BasePage(driver);
+        basePage.clickElement(button_Close);
     }
 }

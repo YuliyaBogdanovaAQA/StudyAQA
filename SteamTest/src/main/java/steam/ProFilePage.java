@@ -2,6 +2,7 @@ package steam;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.Locale;
@@ -31,48 +32,68 @@ public class ProFilePage {
         this.driver = driver;
     }
 
-    public void goToProFile() {
-        startPage = new StartPage(driver);
-
-        startPage.goToUserFilesFromGlobal_action_menu(startPage.xPath_GoToProfileStartPage()
-                , startPage.xPath_droDownProfileStartPage(), XPath_forCheckOpenPage, title
-                , XPath_forCheckUserOpenPage);
+    public void checkOpenProfilePage() {
+        basePage = new BasePage(driver);
+        basePage.checkOpenPage(XPath_forCheckOpenPage, title);
     }
 
-    public void testChooseTheme() {
+    public WebElement checkRightProfilePage() {
         basePage = new BasePage(driver);
+        return basePage.webElement(XPath_forCheckUserOpenPage);
+    }
 
-        String strCheck = basePage.webElement(button_EditProFile).getText().toLowerCase(Locale.ROOT);
+    public void goTo_EditProFile() {
+        basePage = new BasePage(driver);
         basePage.clickButton(button_EditProFile);
-        Assert.assertTrue(driver.getTitle().toLowerCase(Locale.ROOT)
-                .contains(strCheck));
+    }
 
-        strCheck = basePage.webElement(button_Theme).getText().toLowerCase(Locale.ROOT);
+    public String nameButton_EditProFile() {
+        basePage = new BasePage(driver);
+        return basePage.webElement(button_EditProFile).getText().toLowerCase(Locale.ROOT);
+    }
+
+    public String getTitle() {
+        return driver.getTitle().toLowerCase(Locale.ROOT);
+    }
+
+    public String nameButton_Theme() {
+        basePage = new BasePage(driver);
+        return basePage.webElement(button_Theme).getText().toLowerCase(Locale.ROOT);
+    }
+
+    public void goToTheme() {
+        basePage = new BasePage(driver);
         basePage.clickButton(button_Theme);
-        Assert.assertEquals(strCheck
-                , basePage.webElement(xPathForCheckTheme).getText().toLowerCase(Locale.ROOT));
+    }
 
-        strCheck = basePage.webElement(xPath_CheckTheme).getAttribute("class");
+    public String name_xPathForCheckTheme() {
+        basePage = new BasePage(driver);
+        return basePage.webElement(xPathForCheckTheme).getText().toLowerCase(Locale.ROOT);
+    }
+
+    public String attributeTheme() {
+        basePage = new BasePage(driver);
+        return basePage.webElement(xPath_CheckTheme).getAttribute("class");
+    }
+
+    public void chooseTheme() {
+        basePage = new BasePage(driver);
         basePage.clickButton(xPath_CheckTheme);
-        String strCheckBefore = basePage.webElement(xPath_CheckTheme).getAttribute("class");
-        Assert.assertNotEquals(strCheck, strCheckBefore);
+    }
 
+    public void save_AND_backToProFile() {
+        basePage = new BasePage(driver);
         basePage.clickButton(button_Save);
         basePage.clickButton(button_CameBackToProFile);
+    }
 
-        basePage.checkOpenPage(XPath_forCheckOpenPage,
-                "Сообщество Steam :: juliete_07");
-
-        // проверить применилась ли тема можно только так: идем в профиль -> темы и сверяем атрибуты
-        basePage.clickButton(xPath_goToProFile);
-        basePage.clickButton(button_Theme);
-
-        Assert.assertEquals(strCheckBefore, basePage.webElement(xPath_CheckTheme).getAttribute("class"));
-
+    public void returnFirstTheme() {
+        basePage = new BasePage(driver);
+        String checkProFile = basePage.webElement(xPath_ReturnBaseTheme).getAttribute("class");
         basePage.clickButton(xPath_ReturnBaseTheme);
-        basePage.clickButton(button_Save);
-        basePage.clickButton(button_CameBackToProFile);
+        Assert.assertNotEquals(checkProFile, basePage.webElement(xPath_ReturnBaseTheme).getAttribute("class"));
 
+        save_AND_backToProFile();
         basePage.checkOpenPage(XPath_forCheckOpenPage,
                 "Сообщество Steam :: juliete_07");
     }

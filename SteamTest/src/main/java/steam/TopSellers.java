@@ -18,30 +18,35 @@ public class TopSellers {
 
     protected WebDriver driver;
     private BasePage basePage;
-    private StartPage startPage;
 
     public TopSellers(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
-    public void chooseTopSaleFromLeftMenu() {
-        startPage = new StartPage(driver);
-        startPage.chooseFromLeftMenu(startPage.chooseLeft_TopSellers(), xPath_TopSellersPage, xPath_TopSellersPageForCheck);
+    public void checkOpenTopSellersPage() {
+        basePage = new BasePage(driver);
+        basePage.checkOpenPage(xPath_TopSellersPage, "Поиск Steam");
+    }
+
+    public String getName_Element_TopSellersHeader() {
+        basePage = new BasePage(driver);
+        return basePage.webElement(xPath_TopSellersPageForCheck).getText();
+    }
+
+    public String getAttribute_WindowsMark() {
+        return basePage.webElement(xPath_chooseWindowsApp)
+                .getAttribute("class");
+    }
+
+    public void chooseAppForWindows() {
+        basePage = new BasePage(driver);
+        basePage.clickElement(xPath_chooseWindowsApp);
+        basePage.checkOpenPage(xPath_checkPageOpen, "Поиск Steam");
     }
 
     public void checkСorrectSorting() {
         basePage = new BasePage(driver);
-        startPage = new StartPage(driver);
-
-        String nameAttribute = basePage.webElement(xPath_chooseWindowsApp)                                        //ADD 08/09
-                .getAttribute("class");
-        basePage.clickElement(xPath_chooseWindowsApp);
-        basePage.checkOpenPage(xPath_checkPageOpen, "Поиск Steam");
-
-        Assert.assertNotEquals(nameAttribute                                                                      //ADD 08/09
-                , basePage.webElement(xPath_chooseWindowsApp).getAttribute("class"));                       //ADD 08/09
-
         //сайт при перебере элементов List переодически подгружает список. Из-за этого тест падал
         //с StaleElementReferenceException (т.к. не находил по локатору нужного элемента). Перепробовала разные варианты локаторов,
         //но результат всегда одинаков.

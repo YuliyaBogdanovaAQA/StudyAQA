@@ -2,9 +2,9 @@ package steam;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import java.security.SecureRandom;
 import java.util.Locale;
 
 public class StartPage {
@@ -14,12 +14,16 @@ public class StartPage {
     private String button_Enter_LoginPage = "//a[@class=\"global_action_link\"]";
 
     ///  !!! !!!!  work only After authorization  !!!!
+    private final String EMAIL = "Juliete_07";
+    private String xPath_controlAccount = "//*[@id=\"account_pulldown\"]";
+    private String xPath_SearchLinkStartPage = "//*[@id=\"store_search_link\"]";
     private String xPath_GoToProfileStartPage = "//*[@id=\"account_dropdown\"]//a[1]";
     private String xPath_droDownProfileStartPage = "//*[@id=\"account_pulldown\"]";
 
 
     protected WebDriver driver;
     private BasePage basePage;
+    private LoginPage loginPage;
 
     public StartPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -31,44 +35,31 @@ public class StartPage {
         basePage.checkOpenPage(xPath_StartPage, "Добро пожаловать в Steam");
     }
 
-    public String chooseLeft_TopSellers() {
-        return chooseLeft_TopSellers;
-    }
-
-    public void chooseFromLeftMenu(String chooseLeft_nameAction, String xPath_nameActionPage, String xPath_nameActionPageForCheck) {
+    public String getName_TopSaleFromLeftMenu() {
         basePage = new BasePage(driver);
-
-        String checkNameButton = basePage.webElement(chooseLeft_nameAction)
-                .getText().toLowerCase(Locale.ROOT);                                                                                     //ADD 08/09
-
-        basePage.clickElement(chooseLeft_nameAction);
-
-        basePage.checkOpenPage(xPath_nameActionPage, "Поиск Steam");
-
-        Assert.assertEquals(checkNameButton                                                                     //ADD 08/09
-                , (basePage.webElement(xPath_nameActionPageForCheck)
-                        .getText().toLowerCase(Locale.ROOT)));
-    }
-
-    public String button_Store_nav_News_StartPage() {
-        return button_Store_nav_News_StartPage;
-    }
-
-    public void clickButtonFromStore_nav(String button_Store_nav, String xPath_ForCheckPage
-            , String title, String xPath_PageTitle) {
-        basePage = new BasePage(driver);
-
-        String checkNameButton = basePage.webElement(button_Store_nav)
+        return basePage.webElement(chooseLeft_TopSellers)
                 .getText().toLowerCase(Locale.ROOT);
-        basePage.clickElement(button_Store_nav);
-        basePage.checkOpenPage(xPath_ForCheckPage, title);
-
-        Assert.assertTrue(String.valueOf((basePage.webElement(xPath_PageTitle)
-                .getText().toLowerCase(Locale.ROOT)).contains(checkNameButton)), true);
     }
 
-    public String button_Enter_LoginPage() {
-        return button_Enter_LoginPage;
+    public void goToTopSaleFromLeftMenu() {
+        basePage = new BasePage(driver);
+        basePage.clickElement(chooseLeft_TopSellers);
+    }
+
+    public String getName_News_FromStore_nav() {
+        basePage = new BasePage(driver);
+        return basePage.webElement(button_Store_nav_News_StartPage)
+                .getText().toLowerCase(Locale.ROOT);
+    }
+
+    public void goToNews_FromStore_nav() {
+        basePage = new BasePage(driver);
+        basePage.clickElement(button_Store_nav_News_StartPage);
+    }
+
+    public void goToLoginPage() {
+        loginPage = new LoginPage(driver);
+        goTo(button_Enter_LoginPage, loginPage.button_Enter(), loginPage.title());
     }
 
     public void goTo(String button_Enter_NamePage, String button, String title) {
@@ -83,26 +74,34 @@ public class StartPage {
     }
 
     // !!!!  work only After authorization  !!!!
+    public String EMAIL() {
+        return EMAIL;
+    }
 
-    public String xPath_GoToProfileStartPage(){
+    public void checkStartPageAuthorization() {
+        basePage = new BasePage(driver);
+        basePage.checkOpenPage(xPath_SearchLinkStartPage, "Добро пожаловать в Steam");
+    }
+
+    public WebElement ElementCheckAuthorization() {
+        basePage = new BasePage(driver);
+        return basePage.webElement(xPath_controlAccount);
+    }
+
+    public String xPath_GoToProfileStartPage() {
         return xPath_GoToProfileStartPage;
     }
 
-    public String xPath_droDownProfileStartPage(){
-        return xPath_droDownProfileStartPage;
-    }
-
-    public void goToUserFilesFromGlobal_action_menu(String xPath_GoToNameCheckStartPage
-            , String xPath_droDownNameCheckStartPage, String XPath_forCheckOpenPage, String title
-            , String XPath_forCheckUserOpenPage) {   // где лучше размещать такие методы??? Там откуда они начинаются или там, где завершаются???
+    public String checkRightProfile() {
         basePage = new BasePage(driver);
 
-        String nameAttribute = basePage.webElement(xPath_GoToNameCheckStartPage)
+        String nameAttribute = basePage.webElement(xPath_GoToProfileStartPage())
                 .getText().toLowerCase(Locale.ROOT);
-        String lastWord = nameAttribute.substring(nameAttribute.lastIndexOf(" ") + 1);
-        basePage.choiceFromDropdownMenu(xPath_droDownNameCheckStartPage, xPath_GoToNameCheckStartPage);
+        return nameAttribute.substring(nameAttribute.lastIndexOf(" ") + 1);
+    }
 
-        basePage.checkOpenPage(XPath_forCheckOpenPage, title);
-        Assert.assertTrue(basePage.webElement(XPath_forCheckUserOpenPage).getText().contains(lastWord));
+    public void goToProFile() {
+        basePage = new BasePage(driver);
+        basePage.choiceFromDropdownMenu(xPath_droDownProfileStartPage, xPath_GoToProfileStartPage);
     }
 }

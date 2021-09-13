@@ -46,7 +46,6 @@ public class BasePage {
             ex.getMessage();
         } finally {
             System.out.println(element.getAttribute("value"));
-            Assert.assertEquals(data, webElement(locatorXPath).getAttribute("value"));                     //!!!ADD 08.09
         }
     }
 
