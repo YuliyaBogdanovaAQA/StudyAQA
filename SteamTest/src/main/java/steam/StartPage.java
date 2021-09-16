@@ -8,17 +8,17 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.Locale;
 
 public class StartPage {
-    private String xPath_StartPage = "//div[@id=\"global_header\"]//img";
-    private String chooseLeft_TopSellers = "//div[@class=\"home_page_gutter\"]//div[@class=\"gutter_items\"][4]//a[1]";
-    private String button_Store_nav_News_StartPage = "//div[@class=\"store_nav\"]/a[2]";
-    private String button_Enter_LoginPage = "//a[@class=\"global_action_link\"]";
+    private String xPathStartPage = "//div[@id=\"global_header\"]//img";
+    private String chooseLeftTopSellers = "//div[@class=\"home_page_gutter\"]//div[@class=\"gutter_items\"][4]//a[1]";
+    private String buttonStoreNavNewsStartPage = "//div[@class=\"store_nav\"]/a[2]";
+    private String buttonEnterLoginPage = "//a[@class=\"global_action_link\"]";
 
     ///  !!! !!!!  work only After authorization  !!!!
     private final String EMAIL = "Juliete_07";
-    private String xPath_controlAccount = "//*[@id=\"account_pulldown\"]";
-    private String xPath_SearchLinkStartPage = "//*[@id=\"store_search_link\"]";
-    private String xPath_GoToProfileStartPage = "//*[@id=\"account_dropdown\"]//a[1]";
-    private String xPath_droDownProfileStartPage = "//*[@id=\"account_pulldown\"]";
+    private String xPathControlAccount = "//*[@id=\"account_pulldown\"]";
+    private String xPathSearchLinkStartPage = "//*[@id=\"store_search_link\"]";
+    private String xPathGoToProfileStartPage = "//*[@id=\"account_dropdown\"]//a[1]";
+    private String xPathDroDownProfileStartPage = "//*[@id=\"account_pulldown\"]";
 
 
     protected WebDriver driver;
@@ -32,34 +32,34 @@ public class StartPage {
 
     public void checkStartPage() {
         basePage = new BasePage(driver);
-        basePage.checkOpenPage(xPath_StartPage, "Добро пожаловать в Steam");
+        basePage.checkOpenPage(xPathStartPage, "Добро пожаловать в Steam");
     }
 
-    public String getName_TopSaleFromLeftMenu() {
+    public String getNameTopSaleFromLeftMenu() {
         basePage = new BasePage(driver);
-        return basePage.webElement(chooseLeft_TopSellers)
+        return basePage.webElement(chooseLeftTopSellers)
                 .getText().toLowerCase(Locale.ROOT);
     }
 
     public void goToTopSaleFromLeftMenu() {
         basePage = new BasePage(driver);
-        basePage.clickElement(chooseLeft_TopSellers);
+        basePage.clickElement(chooseLeftTopSellers);
     }
 
-    public String getName_News_FromStore_nav() {
+    public String getNameNewsFromStoreNav() {
         basePage = new BasePage(driver);
-        return basePage.webElement(button_Store_nav_News_StartPage)
+        return basePage.webElement(buttonStoreNavNewsStartPage)
                 .getText().toLowerCase(Locale.ROOT);
     }
 
-    public void goToNews_FromStore_nav() {
+    public void goToNewsFromStoreNav() {
         basePage = new BasePage(driver);
-        basePage.clickElement(button_Store_nav_News_StartPage);
+        basePage.clickElement(buttonStoreNavNewsStartPage);
     }
 
     public void goToLoginPage() {
         loginPage = new LoginPage(driver);
-        goTo(button_Enter_LoginPage, loginPage.button_Enter(), loginPage.title());
+        goTo(buttonEnterLoginPage, loginPage.button_Enter(), loginPage.title());
     }
 
     public void goTo(String button_Enter_NamePage, String button, String title) {
@@ -80,28 +80,28 @@ public class StartPage {
 
     public void checkStartPageAuthorization() {
         basePage = new BasePage(driver);
-        basePage.checkOpenPage(xPath_SearchLinkStartPage, "Добро пожаловать в Steam");
+        basePage.checkOpenPage(xPathSearchLinkStartPage, "Добро пожаловать в Steam");
     }
 
     public WebElement ElementCheckAuthorization() {
         basePage = new BasePage(driver);
-        return basePage.webElement(xPath_controlAccount);
+        return basePage.webElement(xPathControlAccount);
     }
 
-    public String xPath_GoToProfileStartPage() {
-        return xPath_GoToProfileStartPage;
+    public String xPathGoToProfileStartPage() {
+        return xPathGoToProfileStartPage;
     }
 
     public String checkRightProfile() {
         basePage = new BasePage(driver);
 
-        String nameAttribute = basePage.webElement(xPath_GoToProfileStartPage())
+        String nameAttribute = basePage.webElement(xPathGoToProfileStartPage())
                 .getText().toLowerCase(Locale.ROOT);
         return nameAttribute.substring(nameAttribute.lastIndexOf(" ") + 1);
     }
 
     public void goToProFile() {
         basePage = new BasePage(driver);
-        basePage.choiceFromDropdownMenu(xPath_droDownProfileStartPage, xPath_GoToProfileStartPage);
+        basePage.choiceFromDropdownMenu(xPathDroDownProfileStartPage, xPathGoToProfileStartPage);
     }
 }

@@ -9,12 +9,12 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class TopSellers {
-    private String xPath_TopSellersPage = "//div[@class=\"page_content\"]//*[contains(text(),'Лидеры продаж')]";
-    private String xPath_TopSellersPageForCheck = "//h2[@class=\"pageheader full\"]";
+    private String xPathTopSellersPage = "//div[@class=\"page_content\"]//*[contains(text(),'Лидеры продаж')]";
+    private String xPathTopSellersPageForCheck = "//h2[@class=\"pageheader full\"]";
 
-    private String xPath_chooseWindowsApp = "//div[@data-value=\"win\"]//span[@data-param=\"os\"]";
-    private String xPath_checkPageOpen = "//div[@id=\"search_result_container\"]//a[20]";
-    private String xPath_checkList = "//div[@id=\"search_resultsRows\"]//div[@class=\"col search_name ellipsis\"]//*//span[1]";
+    private String xPathChooseWindowsApp = "//div[@data-value=\"win\"]//span[@data-param=\"os\"]";
+    private String xPathCheckPageOpen = "//div[@id=\"search_result_container\"]//a[20]";
+    private String xPathCheckList = "//div[@id=\"search_resultsRows\"]//div[@class=\"col search_name ellipsis\"]//*//span[1]";
 
     protected WebDriver driver;
     private BasePage basePage;
@@ -26,23 +26,24 @@ public class TopSellers {
 
     public void checkOpenTopSellersPage() {
         basePage = new BasePage(driver);
-        basePage.checkOpenPage(xPath_TopSellersPage, "Поиск Steam");
+        basePage.checkOpenPage(xPathTopSellersPage, "Поиск Steam");
     }
 
-    public String getName_Element_TopSellersHeader() {
+
+    public String getNameElementTopSellersHeader() {
         basePage = new BasePage(driver);
-        return basePage.webElement(xPath_TopSellersPageForCheck).getText();
+        return basePage.webElement(xPathTopSellersPageForCheck).getText();
     }
 
-    public String getAttribute_WindowsMark() {
-        return basePage.webElement(xPath_chooseWindowsApp)
+    public String getAttributeWindowsMark() {
+        return basePage.webElement(xPathChooseWindowsApp)
                 .getAttribute("class");
     }
 
     public void chooseAppForWindows() {
         basePage = new BasePage(driver);
-        basePage.clickElement(xPath_chooseWindowsApp);
-        basePage.checkOpenPage(xPath_checkPageOpen, "Поиск Steam");
+        basePage.clickElement(xPathChooseWindowsApp);
+        basePage.checkOpenPage(xPathCheckPageOpen, "Поиск Steam");
     }
 
     public void checkСorrectSorting() {
@@ -53,7 +54,7 @@ public class TopSellers {
 
         try {
             List<WebElement> listElements = basePage.webElements
-                    (xPath_checkList);                                       //.win.platform_img ;//span[@class="platform_img win"]
+                    (xPathCheckList);                                       //.win.platform_img ;//span[@class="platform_img win"]
             for (int i = 0; i < listElements.size(); i++) {
                 String str = listElements.get(i).getAttribute("class");                         //for control work
                 System.out.println(str);

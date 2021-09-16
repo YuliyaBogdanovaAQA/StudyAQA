@@ -9,23 +9,20 @@ import java.util.Locale;
 
 public class ProFilePage {
 
-    private String XPath_forCheckOpenPage = "//div[@class=\"persona_name\"]";
+    private String XPathForCheckOpenPage = "//div[@class=\"persona_name\"]";
     private String title = "Сообщество Steam :: juliete_07";
-    private String XPath_forCheckUserOpenPage = "//*[@class=\"btn_profile_action btn_medium\"]";
+    private String XPathForCheckUserOpenPage = "//*[@class=\"btn_profile_action btn_medium\"]";
     private String xPathForCheckTheme = "//div[@class=\"DialogHeader\"]";
 
-    private String button_EditProFile = "//*[@class=\"btn_profile_action btn_medium\"]";
-    private String button_Theme = "//*[@class=\"profileeditshell_NavLink_3rtIp\"][4]";
-    private String button_Save = "//button[@class=\"DialogButton _DialogLayout Primary \"]";
-    private String button_CameBackToProFile = "//div[@class=\"profileeditshell_BackToProfileCtn_1YOt2\"]//a";
-    private String xPath_CheckTheme = "//div[@class=\"profileedit_ItemPickerList_SMUuC\"]/div[5]";
-    private String xPath_ReturnBaseTheme = "//div[@class=\"profileedit_ItemPickerList_SMUuC\"]/div[2]";
-
-    private String xPath_goToProFile = "//*[@class=\"btn_profile_action btn_medium\"]";
+    private String buttonEditProFile = "//*[@class=\"btn_profile_action btn_medium\"]";
+    private String buttonTheme = "//*[@class=\"profileeditshell_NavLink_3rtIp\"][4]";
+    private String buttonSave = "//button[@class=\"DialogButton _DialogLayout Primary \"]";
+    private String buttonCameBackToProFile = "//div[@class=\"profileeditshell_BackToProfileCtn_1YOt2\"]//a";
+    private String xPathCheckTheme = "//div[@class=\"profileedit_ItemPickerList_SMUuC\"]/div[5]";
+    private String xPathReturnBaseTheme = "//div[@class=\"profileedit_ItemPickerList_SMUuC\"]/div[2]";
 
     protected WebDriver driver;
     private BasePage basePage;
-    private StartPage startPage;
 
     public ProFilePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -34,67 +31,67 @@ public class ProFilePage {
 
     public void checkOpenProfilePage() {
         basePage = new BasePage(driver);
-        basePage.checkOpenPage(XPath_forCheckOpenPage, title);
+        basePage.checkOpenPage(XPathForCheckOpenPage, title);
     }
 
     public WebElement checkRightProfilePage() {
         basePage = new BasePage(driver);
-        return basePage.webElement(XPath_forCheckUserOpenPage);
+        return basePage.webElement(XPathForCheckUserOpenPage);
     }
 
-    public void goTo_EditProFile() {
+    public void goToEditProFile() {
         basePage = new BasePage(driver);
-        basePage.clickButton(button_EditProFile);
+        basePage.clickButton(buttonEditProFile);
     }
 
-    public String nameButton_EditProFile() {
+    public String nameButtonEditProFile() {
         basePage = new BasePage(driver);
-        return basePage.webElement(button_EditProFile).getText().toLowerCase(Locale.ROOT);
+        return basePage.webElement(buttonEditProFile).getText().toLowerCase(Locale.ROOT);
     }
 
     public String getTitle() {
         return driver.getTitle().toLowerCase(Locale.ROOT);
     }
 
-    public String nameButton_Theme() {
+    public String nameButtonTheme() {
         basePage = new BasePage(driver);
-        return basePage.webElement(button_Theme).getText().toLowerCase(Locale.ROOT);
+        return basePage.webElement(buttonTheme).getText().toLowerCase(Locale.ROOT);
     }
 
     public void goToTheme() {
         basePage = new BasePage(driver);
-        basePage.clickButton(button_Theme);
+        basePage.clickButton(buttonTheme);
     }
 
-    public String name_xPathForCheckTheme() {
+    public String nameXPathForCheckTheme() {
         basePage = new BasePage(driver);
         return basePage.webElement(xPathForCheckTheme).getText().toLowerCase(Locale.ROOT);
     }
 
     public String attributeTheme() {
         basePage = new BasePage(driver);
-        return basePage.webElement(xPath_CheckTheme).getAttribute("class");
+        return basePage.webElement(xPathCheckTheme).getAttribute("class");
     }
 
     public void chooseTheme() {
         basePage = new BasePage(driver);
-        basePage.clickButton(xPath_CheckTheme);
+        basePage.clickButton(xPathCheckTheme);
     }
 
-    public void save_AND_backToProFile() {
+    public void saveANDbackToProFile() {
         basePage = new BasePage(driver);
-        basePage.clickButton(button_Save);
-        basePage.clickButton(button_CameBackToProFile);
+        basePage.clickButton(buttonSave);
+        basePage.clickButton(buttonCameBackToProFile);
     }
 
     public void returnFirstTheme() {
         basePage = new BasePage(driver);
-        String checkProFile = basePage.webElement(xPath_ReturnBaseTheme).getAttribute("class");
-        basePage.clickButton(xPath_ReturnBaseTheme);
-        Assert.assertNotEquals(checkProFile, basePage.webElement(xPath_ReturnBaseTheme).getAttribute("class"));
+        String checkProFile = basePage.webElement(xPathReturnBaseTheme).getAttribute("class");
+        basePage.clickButton(xPathReturnBaseTheme);
+        Assert.assertNotEquals(checkProFile, basePage.webElement(xPathReturnBaseTheme).getAttribute("class"));
 
-        save_AND_backToProFile();
-        basePage.checkOpenPage(XPath_forCheckOpenPage,
+        saveANDbackToProFile();
+        basePage.checkOpenPage(XPathForCheckOpenPage,
                 "Сообщество Steam :: juliete_07");
     }
 }

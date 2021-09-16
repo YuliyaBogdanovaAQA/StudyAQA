@@ -1,5 +1,6 @@
 package steam;
 
+import io.qameta.allure.Step;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -50,14 +51,14 @@ public class TestSteam {
         //! реальный результат работы сортировки по уровню продаж проверить не могу, т.к. не могу найти атрибут, отвечающий
         //за такой вид сортировки
         startPage.checkStartPage();
-        String nameClickElement = startPage.getName_TopSaleFromLeftMenu();
+        String nameClickElement = startPage.getNameTopSaleFromLeftMenu();
         startPage.goToTopSaleFromLeftMenu();
         topSellers.checkOpenTopSellersPage();
         Assert.assertEquals(nameClickElement.toLowerCase(Locale.ROOT)
-                , topSellers.getName_Element_TopSellersHeader().toLowerCase(Locale.ROOT));
-        String markBefore = topSellers.getAttribute_WindowsMark();
+                , topSellers.getNameElementTopSellersHeader().toLowerCase(Locale.ROOT));
+        String markBefore = topSellers.getAttributeWindowsMark();
         topSellers.chooseAppForWindows();
-        Assert.assertNotEquals(markBefore, topSellers.getAttribute_WindowsMark());
+        Assert.assertNotEquals(markBefore, topSellers.getAttributeWindowsMark());
         topSellers.checkСorrectSorting();
     }
 
@@ -72,8 +73,8 @@ public class TestSteam {
         //Ожидаемый результат: переключение на следующую статью вверх или вниз, закрытие подборки новостей.
         //!! Если статья одна тест упадет!!!
         startPage.checkStartPage();
-        String nameClickElement = startPage.getName_News_FromStore_nav();
-        startPage.goToNews_FromStore_nav();
+        String nameClickElement = startPage.getNameNewsFromStoreNav();
+        startPage.goToNewsFromStoreNav();
         newsPage.checkOpenNewsPage();
         Assert.assertTrue(String.valueOf((newsPage.headerForCheck().toLowerCase(Locale.ROOT))
                 .contains(nameClickElement)), true);
@@ -92,8 +93,8 @@ public class TestSteam {
         startPage.checkStartPage();
         startPage.goToLoginPage();
         loginPage.EnterData();
-        Assert.assertEquals(loginPage.USER_NAME(), loginPage.Input_USER_NAME().getAttribute("value"));
-        Assert.assertEquals(loginPage.USER_PASS(), loginPage.Input_USER_PASS().getAttribute("value"));
+        Assert.assertEquals(loginPage.USER_NAME(), loginPage.InputUSER_NAME().getAttribute("value"));
+        Assert.assertEquals(loginPage.USER_PASS(), loginPage.InputUSER_PASS().getAttribute("value"));
         loginPage.Enter();
         startPage.checkStartPageAuthorization();
         Assert.assertEquals(startPage.ElementCheckAuthorization().getText().toLowerCase(Locale.ROOT),
@@ -113,29 +114,29 @@ public class TestSteam {
         proFilePage.checkOpenProfilePage();
         Assert.assertTrue(proFilePage.checkRightProfilePage().getText().contains(checkProFile));
 
-        checkProFile = proFilePage.nameButton_EditProFile();
-        proFilePage.goTo_EditProFile();
+        checkProFile = proFilePage.nameButtonEditProFile();
+        proFilePage.goToEditProFile();
         Assert.assertTrue(proFilePage.getTitle().contains(checkProFile));
 
-        checkProFile = proFilePage.nameButton_Theme();
+        checkProFile = proFilePage.nameButtonTheme();
         proFilePage.goToTheme();
-        Assert.assertEquals(checkProFile, proFilePage.name_xPathForCheckTheme());
+        Assert.assertEquals(checkProFile, proFilePage.nameXPathForCheckTheme());
 
         checkProFile = proFilePage.attributeTheme();
         proFilePage.chooseTheme();
         Assert.assertNotEquals(checkProFile, proFilePage.attributeTheme());
         String attributeThemeAfterChoose = proFilePage.attributeTheme();
-        proFilePage.save_AND_backToProFile();
+        proFilePage.saveANDbackToProFile();
         proFilePage.checkOpenProfilePage();
 
         //проверка применения темы.
-        checkProFile = proFilePage.nameButton_EditProFile();
-        proFilePage.goTo_EditProFile();
+        checkProFile = proFilePage.nameButtonEditProFile();
+        proFilePage.goToEditProFile();
         Assert.assertTrue(proFilePage.getTitle().contains(checkProFile));
 
-        checkProFile = proFilePage.nameButton_Theme();
+        checkProFile = proFilePage.nameButtonTheme();
         proFilePage.goToTheme();
-        Assert.assertEquals(checkProFile, proFilePage.name_xPathForCheckTheme());
+        Assert.assertEquals(checkProFile, proFilePage.nameXPathForCheckTheme());
 
         Assert.assertEquals(proFilePage.attributeTheme(), attributeThemeAfterChoose);
 
