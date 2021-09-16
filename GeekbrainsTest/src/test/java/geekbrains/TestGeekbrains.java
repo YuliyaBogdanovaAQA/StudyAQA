@@ -36,10 +36,10 @@ public class TestGeekbrains {
         driver.get("https://crm.geekbrains.space/user/login");
     }
 
-   /* @After
+    @After
     public void close() {
         driver.quit();
-    }*/
+    }
 
     @Test
     public void testCaseOne() {
